@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Beneficiaries</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #fff; /* White background */
+            color: #333; /* Dark text for readability on white */
+        }
+        h1 {
+            color: #dc3545; /* Red heading */
+        }
+        .table {
+            background-color: #f8f9fa; /* Light gray table background */
+            color: #333;
+        }
+        .thead-dark th {
+            background-color: #dc3545; /* Red table header */
+            color: white;
+            border-color: #333;
+        }
+        th, td {
+            border-color: #ddd;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #f9f9f9; /* Light gray for striped rows */
+        }
+        .btn-secondary {
+            background-color: #333;
+            border-color: #555;
+            color: #eee;
+        }
+        .btn-secondary:hover {
+            background-color: #555;
+            border-color: #777;
+            color: #fff;
+        }
+        .alert-info {
+            background-color: #f8f9fa;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        .no-beneficiaries {
+            color: #777;
+            font-style: italic;
+        }
+        a {
+            color: #dc3545; /* Red links */
+        }
+        a:hover {
+            color: #f86c6b;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Beneficiary List</h1>
+
+    <div th:if="${#lists.isEmpty(beneficiaryList)}" class="alert alert-info" role="alert">
+        No beneficiaries found.
+    </div>
+
+    <table th:unless="${#lists.isEmpty(beneficiaryList)}" class="table table-striped table-bordered">
+        <thead class="thead-dark">
+        <tr>
+            <th>Beneficiary Name</th>
+            <th>Beneficiary Bank</th>
+            <th>Beneficiary Account Number</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="beneficiaryObj : ${beneficiaryList}">
+            <td th:text="${beneficiaryObj.Beneficiaryname}"></td>
+            <td th:text="${beneficiaryObj.Beneficiarybank}"></td>
+            <td th:text="${beneficiaryObj.Beneficiaryaccno}"></td>
+
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/dashboardPage}" class="btn btn-secondary">Back to Dashboard</a>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
